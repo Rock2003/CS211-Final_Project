@@ -79,21 +79,6 @@ public class ArrayList<E> implements List<E> {
         size++;
     }
 
-    // pre : 0 <= index <= size() (throws IndexOutOfBoundsException if not)
-    // post: inserts the given value at the given index, shifting subsequent
-    //       values right
-    public void add(int index, E value) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("index: " + index);
-        }
-        ensureCapacity(size + 1);
-        for (int i = size; i >= index + 1; i--) {
-            elementData[i] = elementData[i - 1];
-        }
-        elementData[index] = value;
-        size++;
-    }
-
     // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
     // post: removes value at the given index, shifting subsequent values left
     public void remove(int index) {
@@ -103,13 +88,6 @@ public class ArrayList<E> implements List<E> {
         }
         elementData[size - 1] = null;
         size--;
-    }
-
-    // pre : 0 <= index < size() (throws IndexOutOfBoundsException if not)
-    // post: replaces the value at the given index with the given value
-    public void set(int index, E value) {
-        checkIndex(index);
-        elementData[index] = value;
     }
 
     // post: list is empty
