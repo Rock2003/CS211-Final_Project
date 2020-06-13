@@ -52,12 +52,18 @@ public class SortedList<E extends Comparable<E>> {
    // post : returns the position of the first occurrence of the given
    //        value (-1 if not found)
    public int indexOf(E value) {
-        for (int i = 0; i < size; i++) {
-            if (elementData[i].equals(value)) {
-                return i;
-            }
-        }
-        return -1;
+        int min = 0, max = size -1;
+      while (min <= max) {
+         int mid = (min + max) / 2;
+         if (elementData[mid].compareTo(value) < 0) {
+            min = mid + 1;
+         } else if (elementData[mid].compareTo(value) > 0) {
+            max = mid - 1;
+         } else {
+            return mid;
+         }
+      }
+      return -1;
     }
 
 
